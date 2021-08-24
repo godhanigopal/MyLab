@@ -26,7 +26,7 @@ pipeline{
         // Stage 3 : Publish the artifacts to Nexus Server
         stage('Publish artifacts to Nexus'){
             steps{
-                nexusArtifactUploader artifacts: [[artifactId: 'GopalDevOpsLab', classifier: '', file: 'target/GopalDevOpsLab-0.0.5.war', type: 'war']], credentialsId: '637f999a-549f-435d-8d76-4ac6ce5334d3', groupId: 'com.gopaldevopslab', nexusUrl: '172.20.10.113:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'GopalDevOpsLav-SNAPSHOT', version: '0.0.5'
+                nexusArtifactUploader artifacts: [[artifactId: 'GopalDevOpsLab', classifier: '', file: 'target/GopalDevOpsLab-0.0.2.war', type: 'war']], credentialsId: '637f999a-549f-435d-8d76-4ac6ce5334d3', groupId: 'com.gopaldevopslab', nexusUrl: '172.20.10.113:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'GopalDevOpsLab-SNAPSHOT', version: '0.0.2-SNAPSHOT'
             }
         }
 
@@ -41,8 +41,6 @@ pipeline{
 
             }
         }
-
-        
         
     }
 
