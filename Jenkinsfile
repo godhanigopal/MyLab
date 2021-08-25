@@ -4,6 +4,11 @@ pipeline{
     tools {
         maven 'maven'
     }
+    environment{
+        ArtifactId = readMavenPom().getArtifactId()
+        Version = readMavenPom().getVersion()
+        Name = readMavenPom().getName()
+    }
 
     stages {
         // Specify various stage with in stages
@@ -30,17 +35,34 @@ pipeline{
             }
         }
 
-        // Stage3 : Publish the source code to Sonarqube
-        stage ('Sonarqube Analysis'){
+        // Stage 4: Print some information
+        stage ('Print Enviroment Variable'){
             steps {
-                echo "deploying......"
-                // echo ' Source code published to Sonarqube for SCA......'
-                // withSonarQubeEnv('sonarqube'){ // You can override the credential to be used
-                //      sh 'mvn sonar:sonar'
-                //}
-
+                echo "ArtifactID is '${ArtifactID}'"
+                echo "Version is '${Version}'"
+                echo "GroupID is '{}'"
+                echo "Name is '${Name}'"
             }
         }
+
+        // Stage 5: Deploying
+        stage('Deploy'){
+            steps {
+                echo "deploying......"
+            }
+        }
+    
+        // // Stage3 : Publish the source code to Sonarqube
+        // stage ('Sonarqube Analysis'){
+        //     steps {
+        //         echo "deploying......"
+        //         // echo ' Source code published to Sonarqube for SCA......'
+        //         // withSonarQubeEnv('sonarqube'){ // You can override the credential to be used
+        //         //      sh 'mvn sonar:sonar'
+        //         //}
+
+        //     }
+        // }
         
     }
 
