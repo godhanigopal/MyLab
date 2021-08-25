@@ -34,7 +34,7 @@ pipeline{
             steps{
                 script{
                     def NexusRepo = Version.endsWith("SNAPSHOT") ? "GopalDevOpsLab-SNAPSHOT" : "GopalDevOpsLab-Release"
-                }
+                
                 nexusArtifactUploader artifacts: [[
                     artifactId: "${ArtifactId}", 
                     classifier: '', 
@@ -49,7 +49,7 @@ pipeline{
                     version: "${Version}"
             }
         }
-
+        }
         // Stage 4: Print some information
         stage ('Print Enviroment Variable'){
             steps {
