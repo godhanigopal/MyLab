@@ -32,14 +32,25 @@ pipeline{
         // Stage 3 : Publish the artifacts to Nexus Server
         stage('Publish artifacts to Nexus'){
             steps{
-                nexusArtifactUploader artifacts: [[artifactId: 'GopalDevOpsLab', classifier: '', file: 'target/GopalDevOpsLab-0.0.2-SNAPSHOT.war', type: 'war']], credentialsId: '637f999a-549f-435d-8d76-4ac6ce5334d3', groupId: 'com.gopaldevopslab', nexusUrl: '172.20.10.113:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'GopalDevOpsLab-SNAPSHOT', version: '0.0.2-SNAPSHOT'
+                nexusArtifactUploader artifacts: [[
+                    artifactId: '${ArtifactId}', 
+                    classifier: '', 
+                    file: 'target/GopalDevOpsLab-0.0.3-SNAPSHOT.war', 
+                    type: 'war']], 
+                    credentialsId: '637f999a-549f-435d-8d76-4ac6ce5334d3', 
+                    groupId: '${GroupID}', 
+                    nexusUrl: '172.20.10.113:8081', 
+                    nexusVersion: 'nexus3', 
+                    protocol: 'http', 
+                    repository: 'GopalDevOpsLab-SNAPSHOT', 
+                    version: '${Version}'
             }
         }
 
         // Stage 4: Print some information
         stage ('Print Enviroment Variable'){
             steps {
-                echo "ArtifactID is '${ArtifactID}'"
+                echo "ArtifactID is '${ArtifactId}'"
                 echo "Version is '${Version}'"
                 echo "GroupID is '${GroupID}'"
                 echo "Name is '${Name}'"
