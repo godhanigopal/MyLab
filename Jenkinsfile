@@ -33,17 +33,17 @@ pipeline{
         stage('Publish artifacts to Nexus'){
             steps{
                 nexusArtifactUploader artifacts: [[
-                    artifactId: '${ArtifactId}', 
+                    artifactId: "${ArtifactId}", 
                     classifier: '', 
                     file: 'target/GopalDevOpsLab-0.0.3-SNAPSHOT.war', 
                     type: 'war']], 
                     credentialsId: '637f999a-549f-435d-8d76-4ac6ce5334d3', 
-                    groupId: '${GroupID}', 
+                    groupId: "${GroupID}", 
                     nexusUrl: '172.20.10.113:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'GopalDevOpsLab-SNAPSHOT', 
-                    version: '${Version}'
+                    version: "${Version}"
             }
         }
 
