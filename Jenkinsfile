@@ -38,7 +38,7 @@ pipeline{
                 nexusArtifactUploader artifacts: [[
                     artifactId: "${ArtifactId}", 
                     classifier: '', 
-                    file: 'target/GopalDevOpsLab-0.0.4-SNAPSHOT.war', 
+                    file: "target/${ArtifactId}-${Version}.war", 
                     type: 'war']], 
                     credentialsId: '637f999a-549f-435d-8d76-4ac6ce5334d3', 
                     groupId: "${GroupID}", 
